@@ -1,17 +1,34 @@
-from hypothesis import given, strategies as st
-from processor import decode_promo_voucher, calculate_seat_tier_price, parse_attendee_badge
 
+from hypothesis import given, strategies as st
+from processor import (
+    decode_promo_voucher,
+    calculate_seat_tier_price,
+    parse_attendee_badge
+)
+
+
+# Test 1: Promotional voucher validation
 @given(st.text() | st.none())
 def test_decode_promo_voucher_no_crash(s):
-    #To-Do:Using try and except complete this function.
-    pass
+    try:
+        decode_promo_voucher(s)
+    except Exception as e:
+        assert False, f"decode_promo_voucher crashed with input {s!r}: {e}"
 
+
+# Test 2: Seat tier price validation
 @given(st.text() | st.none())
 def test_calculate_seat_tier_price_safe(s):
-    #To-Do:Using try and except complete this function.
-    pass
+    try:
+        calculate_seat_tier_price(s)
+    except Exception as e:
+        assert False, f"calculate_seat_tier_price crashed with input {s!r}: {e}"
 
+
+# Test 3: Attendee badge validation
 @given(st.text() | st.none())
 def test_parse_attendee_badge_safe(s):
-    #To-Do:Using try and except complete this function.
-    pass
+    try:
+        parse_attendee_badge(s)
+    except Exception as e:
+        assert False, f"parse_attendee_badge crashed with input {s!r}: {e}"
